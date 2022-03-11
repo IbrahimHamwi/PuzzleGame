@@ -14,11 +14,13 @@ public class Gem : MonoBehaviour
     private bool mousePressed;
     private float swipeAngle = 0f;
     private Gem otherGem;
-    public enum GemType { Red, Blue, Green, Yellow, Purple };
+    public enum GemType { Red, Blue, Green, Yellow, Purple, Bomb };
     public GemType Type;
     public bool isMatched;
 
     private Vector2Int previousPos;
+    public GameObject destroyEffect;
+    public int blastSize = 2;//how many gems to destroy when bomb is destroyed
     void Start()
     {
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3089869281687750149
+--- !u!1001 &8057066172560100662
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4919534825215034860, guid: ff474dca272381e4fb2d647f01e1fd97, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: fa67839330996764683a123cb35a1ea8, type: 3}
+      objectReference: {fileID: 21300000, guid: d1c82e015b38d4448bc1ba5e3eff90fa, type: 3}
     - target: {fileID: 4919534825215034861, guid: ff474dca272381e4fb2d647f01e1fd97, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,23 +57,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4919534825215034862, guid: ff474dca272381e4fb2d647f01e1fd97, type: 3}
       propertyPath: m_Name
-      value: Gem - Purple Variant
+      value: Bomb Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4919534825215034863, guid: ff474dca272381e4fb2d647f01e1fd97, type: 3}
       propertyPath: Type
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4919534825215034863, guid: ff474dca272381e4fb2d647f01e1fd97, type: 3}
       propertyPath: destroyEffect
       value: 
-      objectReference: {fileID: 3155978541072481755, guid: c8a9f64abe16da14eb431e2313782466, type: 3}
+      objectReference: {fileID: 3628395658578443490, guid: fe4ab11c2306fde4291c7dd54b243d13, type: 3}
     - target: {fileID: 8287022301068330463, guid: ff474dca272381e4fb2d647f01e1fd97, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.7897436
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8287022301068330463, guid: ff474dca272381e4fb2d647f01e1fd97, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.8923077
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff474dca272381e4fb2d647f01e1fd97, type: 3}

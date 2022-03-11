@@ -15,6 +15,8 @@ public class Board : MonoBehaviour
     public BoardState currentState = BoardState.move;
 
     public GameObject bgTilePrefab;
+    public Gem bomb;
+    public float bombChance = 2f;
     private void Awake()
     {
         matchFind = FindObjectOfType<MatchFinder>();
@@ -54,6 +56,10 @@ public class Board : MonoBehaviour
     }
     private void SpawnGem(Vector2Int pos, Gem gemToSpawn)
     {
+        if (Random.Range(0f, 100f) < bombChance)
+        {
+            gemToSpawn = bomb;
+        }
         Gem gem = Instantiate(gemToSpawn, new Vector3(pos.x, pos.y + height, 0), Quaternion.identity);
         gem.transform.parent = gameObject.transform;
         gem.name = "Gem (" + pos.x + "," + pos.y + ")";
@@ -84,8 +90,10 @@ public class Board : MonoBehaviour
     {
         if (allGems[pos.x, pos.y].isMatched)
         {
+            //Destroy(allGems[pos.x, pos.y].gameObject);
+            Instantiate(allGems[pos.x, pos.y].destroyEffect, allGems[pos.x, pos.y].transform.position, Quaternion.identity);
             Destroy(allGems[pos.x, pos.y].gameObject);
-            allGems[pos.x, pos.y] = null;
+            allGems[pos.x, pos.y] = null;//nullify the gem
         }
     }
     public void DestroyMatches()
@@ -94,7 +102,7 @@ public class Board : MonoBehaviour
         {
             if (matchFind.currentMatches[i] != null)
             {
-                DestroyMatchedGemAt(matchFind.currentMatches[i].posIndex);
+                DestroyMatchedGemAt(matchFind.currentMatches[i].posIndex);//destroy the gem
             }
         }
         StartCoroutine(DecreaseRowCo());
