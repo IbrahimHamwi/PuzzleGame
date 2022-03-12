@@ -21,6 +21,7 @@ public class Gem : MonoBehaviour
     private Vector2Int previousPos;
     public GameObject destroyEffect;
     public int blastSize = 2;//how many gems to destroy when bomb is destroyed
+    public int scoreValue = 10;//how many points to add when gem is destroyed
     void Start()
     {
 
@@ -131,4 +132,5 @@ public class Gem : MonoBehaviour
             }
         }
     }
+
 }

@@ -141,6 +141,7 @@ public class Board : MonoBehaviour
             if (matchFind.currentMatches[i] != null)
             {
                 DestroyMatchedGemAt(matchFind.currentMatches[i].posIndex);//destroy the gem
+                ScoreCheck(matchFind.currentMatches[i]);
             }
         }
         StartCoroutine(DecreaseRowCo());
@@ -219,6 +220,10 @@ public class Board : MonoBehaviour
         {
             Destroy(g.gameObject);
         }
+    }
+    public void ScoreCheck(Gem gemToCheck)
+    {
+        roundManager.currentScore += gemToCheck.scoreValue;
     }
 }
 

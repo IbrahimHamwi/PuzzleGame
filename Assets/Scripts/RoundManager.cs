@@ -8,6 +8,8 @@ public class RoundManager : MonoBehaviour
     private UIManager uiManager;
     private bool endingRound = false;
     private Board board;
+    public int currentScore;
+    public float displayScore;
     void Awake()
     {
         uiManager = FindObjectOfType<UIManager>();
@@ -24,7 +26,7 @@ public class RoundManager : MonoBehaviour
         }
         else
         {
-            uiManager.timerText.text = "0";
+            uiManager.timerText.text = "0" + "s";
             endingRound = true;
         }
         if (endingRound && board.currentState == Board.BoardState.move)
@@ -32,6 +34,8 @@ public class RoundManager : MonoBehaviour
             endingRound = false;
             WinCheck();
         }
+        displayScore = Mathf.Lerp(displayScore, currentScore, Time.deltaTime * 5f);
+        uiManager.scoreText.text = displayScore.ToString("0");
     }
     public void WinCheck()
     {
