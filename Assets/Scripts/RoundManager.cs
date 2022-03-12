@@ -10,6 +10,8 @@ public class RoundManager : MonoBehaviour
     private Board board;
     public int currentScore;
     public float displayScore;
+    public int scoreTarget1, scoreTarget2, scoreTarget3;//scoreTarget is the score needed to get one star, scoreTarget2 is the score needed to get two stars, scoreTarget3 is the score needed to get three stars
+
     void Awake()
     {
         uiManager = FindObjectOfType<UIManager>();
@@ -40,5 +42,25 @@ public class RoundManager : MonoBehaviour
     public void WinCheck()
     {
         uiManager.roundOverScreen.SetActive(true);
+        uiManager.winScore.text = currentScore.ToString("0");
+        if (currentScore >= scoreTarget3)
+        {
+            uiManager.winText.text = "Congratulations! You earned 3 stars!";
+            uiManager.winstars3.SetActive(true);
+        }
+        else if (currentScore >= scoreTarget2)
+        {
+            uiManager.winText.text = "Congratulations! You earned 2 stars!";
+            uiManager.winstars2.SetActive(true);
+        }
+        else if (currentScore >= scoreTarget1)
+        {
+            uiManager.winText.text = "Congratulations! You earned 1 star!";
+            uiManager.winstars1.SetActive(true);
+        }
+        else
+        {
+            uiManager.winText.text = "You didn't earn any stars. Try again!";
+        }
     }
 }
