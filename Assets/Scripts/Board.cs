@@ -17,10 +17,11 @@ public class Board : MonoBehaviour
     public GameObject bgTilePrefab;
     public Gem bomb;
     public float bombChance = 2f;
+    [HideInInspector] public RoundManager roundManager;
     private void Awake()
     {
         matchFind = FindObjectOfType<MatchFinder>();
-
+        roundManager = FindObjectOfType<RoundManager>();
     }
     void Start()
     {

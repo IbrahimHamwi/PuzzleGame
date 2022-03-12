@@ -38,7 +38,7 @@ public class Gem : MonoBehaviour
             transform.position = new Vector3(posIndex.x, posIndex.y, 0);
             board.allGems[posIndex.x, posIndex.y] = this;
         }
-        if (mousePressed && Input.GetMouseButtonUp(0))
+        if (mousePressed && Input.GetMouseButtonUp(0) && board.roundManager.roundTime > 0)
         {
             mousePressed = false;
             finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -52,7 +52,7 @@ public class Gem : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (board.currentState == Board.BoardState.move)
+        if (board.currentState == Board.BoardState.move && board.roundManager.roundTime > 0)
         {
             firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePressed = true;
