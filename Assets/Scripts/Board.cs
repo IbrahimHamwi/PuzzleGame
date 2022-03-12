@@ -29,7 +29,44 @@ public class Board : MonoBehaviour
     }
     private void Update()
     {
-        // matchFind.FindAllMatches();  
+        // matchFind.FindAllMatches();
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            ShuffleBoard();
+        }
+    }
+    private void ShuffleBoard()//shuffle the board without matches
+    {
+        if (currentState != BoardState.wait)
+        {
+            currentState = BoardState.wait;
+            List<Gem> gemsFromBoard = new List<Gem>();
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    gemsFromBoard.Add(allGems[i, j]);
+                    allGems[i, j] = null;
+                }
+            }
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    int gemToUse = Random.Range(0, gemsFromBoard.Count);
+                    int iterations = 0;
+                    while (MatchesAt(new Vector2Int(i, j), gemsFromBoard[gemToUse]) && iterations < 100 && gemsFromBoard.Count > 0)
+                    {
+                        gemToUse = Random.Range(0, gemsFromBoard.Count);
+                        iterations++;
+                    }
+                    gemsFromBoard[gemToUse].SetupGem(new Vector2Int(i, j), this);
+                    allGems[i, j] = gemsFromBoard[gemToUse];
+                    gemsFromBoard.RemoveAt(gemToUse);
+                }
+            }
+            StartCoroutine(FillBoardCo());
+        }
     }
 
     void Setup()
