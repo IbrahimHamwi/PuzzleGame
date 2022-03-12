@@ -18,6 +18,8 @@ public class Board : MonoBehaviour
     public Gem bomb;
     public float bombChance = 2f;
     [HideInInspector] public RoundManager roundManager;
+    private float bonusMultiplier;//how many times the score increases when a gem is destroyed within certain time
+    public float bonusAmount = .5f;
     private void Awake()
     {
         matchFind = FindObjectOfType<MatchFinder>();
@@ -169,7 +171,7 @@ public class Board : MonoBehaviour
         }
         StartCoroutine(FillBoardCo());
     }
-    private IEnumerator FillBoardCo()
+    private IEnumerator FillBoardCo()//fill the board with new gems
     {
         yield return new WaitForSeconds(.5f);
         RefillBoard();
@@ -178,11 +180,14 @@ public class Board : MonoBehaviour
         matchFind.FindAllMatches(); //check for new matches
         if (matchFind.currentMatches.Count > 0)
         {
+            bonusMultiplier++;//increase the multiplier
+            print("bonus multiplier: " + bonusMultiplier);
             yield return new WaitForSeconds(.5f);
             DestroyMatches();
         }
         else
         {
+            bonusMultiplier = 0f;//reset the multiplier
             yield return new WaitForSeconds(.5f);
             currentState = BoardState.move;
         }
@@ -224,6 +229,11 @@ public class Board : MonoBehaviour
     public void ScoreCheck(Gem gemToCheck)
     {
         roundManager.currentScore += gemToCheck.scoreValue;
+        if (bonusMultiplier > 0)
+        {
+            float bonusToAdd = gemToCheck.scoreValue * bonusMultiplier * bonusAmount;
+            roundManager.currentScore += Mathf.RoundToInt(bonusToAdd);
+        }
     }
 }
 
