@@ -14,7 +14,7 @@ public class Gem : MonoBehaviour
     private bool mousePressed;
     private float swipeAngle = 0f;
     private Gem otherGem;
-    public enum GemType { Red, Blue, Green, Yellow, Purple, Bomb };
+    public enum GemType { Red, Blue, Green, Yellow, Purple, Bomb, Stone };
     public GemType Type;
     public bool isMatched;
 

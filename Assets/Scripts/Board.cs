@@ -20,14 +20,18 @@ public class Board : MonoBehaviour
     [HideInInspector] public RoundManager roundManager;
     private float bonusMultiplier;//how many times the score increases when a gem is destroyed within certain time
     public float bonusAmount = .5f;
+    private BoardLayout boardLayout;
+    private Gem[,] layoutStore;
     private void Awake()
     {
         matchFind = FindObjectOfType<MatchFinder>();
         roundManager = FindObjectOfType<RoundManager>();
+        boardLayout = FindObjectOfType<BoardLayout>();
     }
     void Start()
     {
         allGems = new Gem[width, height];
+        layoutStore = new Gem[width, height];
         Setup();
     }
     private void Update()
@@ -74,6 +78,10 @@ public class Board : MonoBehaviour
 
     void Setup()
     {
+        if (boardLayout != null)
+        {
+            layoutStore = boardLayout.GetLayout();
+        }
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -82,17 +90,26 @@ public class Board : MonoBehaviour
                 bgTile.transform.parent = gameObject.transform;
                 bgTile.name = "(" + i + "," + j + ")";
 
-                int gemToUse = Random.Range(0, gems.Length);
-
-                int iterations = 0;
-                while (MatchesAt(new Vector2Int(i, j), gems[gemToUse]) && iterations < 100)
+                if (layoutStore[i, j] != null)
                 {
-                    gemToUse = Random.Range(0, gems.Length);
-                    iterations++;
+                    SpawnGem(new Vector2Int(i, j), layoutStore[i, j]);
                 }
-                SpawnGem(new Vector2Int(i, j), gems[gemToUse]);
+                else
+                {
+
+                    int gemToUse = Random.Range(0, gems.Length);
+
+                    int iterations = 0;
+                    while (MatchesAt(new Vector2Int(i, j), gems[gemToUse]) && iterations < 100)
+                    {
+                        gemToUse = Random.Range(0, gems.Length);
+                        iterations++;
+                    }
+                    SpawnGem(new Vector2Int(i, j), gems[gemToUse]);
+                }
             }
         }
+
     }
     private void SpawnGem(Vector2Int pos, Gem gemToSpawn)
     {
