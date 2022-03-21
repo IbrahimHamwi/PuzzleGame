@@ -42,7 +42,7 @@ public class Board : MonoBehaviour
             ShuffleBoard();
         }
     }
-    private void ShuffleBoard()//shuffle the board without matches
+    public void ShuffleBoard()//shuffle the board without matches
     {
         if (currentState != BoardState.wait)
         {
@@ -147,6 +147,18 @@ public class Board : MonoBehaviour
     {
         if (allGems[pos.x, pos.y].isMatched)
         {
+            if (allGems[pos.x, pos.y].Type == Gem.GemType.Stone)
+            {
+                SFXManager.instance.PlayExplode();
+            }
+            else if (allGems[pos.x, pos.y].Type == Gem.GemType.Bomb)
+            {
+                SFXManager.instance.PlayExplode();
+            }
+            else
+            {
+                SFXManager.instance.PlayGemBreak();
+            }
             //Destroy(allGems[pos.x, pos.y].gameObject);
             Instantiate(allGems[pos.x, pos.y].destroyEffect, allGems[pos.x, pos.y].transform.position, Quaternion.identity);
             Destroy(allGems[pos.x, pos.y].gameObject);

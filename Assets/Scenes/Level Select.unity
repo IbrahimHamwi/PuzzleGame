@@ -3969,7 +3969,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337702799640522283, guid: 7cbfe338e1420224a8f500a6cdad38da, type: 3}
       propertyPath: m_Name
-      value: Level Select Button - L2 (2)
+      value: Level Select Button - L4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297510830829923842, guid: 7cbfe338e1420224a8f500a6cdad38da, type: 3}
+      propertyPath: m_text
+      value: '4
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151724593182317358, guid: 7cbfe338e1420224a8f500a6cdad38da, type: 3}
+      propertyPath: levelToLoad
+      value: Level 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbfe338e1420224a8f500a6cdad38da, type: 3}
@@ -4488,7 +4498,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337702799640522283, guid: 7cbfe338e1420224a8f500a6cdad38da, type: 3}
       propertyPath: m_Name
-      value: Level Select Button - L2 (1)
+      value: Level Select Button - L3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297510830829923842, guid: 7cbfe338e1420224a8f500a6cdad38da, type: 3}
+      propertyPath: m_text
+      value: '3
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151724593182317358, guid: 7cbfe338e1420224a8f500a6cdad38da, type: 3}
+      propertyPath: levelToLoad
+      value: Level 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbfe338e1420224a8f500a6cdad38da, type: 3}

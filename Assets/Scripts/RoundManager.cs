@@ -72,5 +72,6 @@ public class RoundManager : MonoBehaviour
         {
             uiManager.winText.text = "You didn't earn any stars. Try again!";
         }
+        SFXManager.instance.PLayRoundOver();
     }
 }
